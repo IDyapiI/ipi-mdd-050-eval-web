@@ -1,0 +1,7 @@
+{
+  "name": "ipi-mdd-050-eval-web",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootswatch": "^3.3.7"
+  }
+}

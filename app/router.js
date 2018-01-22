@@ -7,6 +7,12 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('artists', function() {
+    this.route('detail', {
+      path: '/detail/:artistId'
+    });
+  });
+  this.route('albums');
 });
 
 export default Router;

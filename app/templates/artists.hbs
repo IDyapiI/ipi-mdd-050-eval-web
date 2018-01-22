@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-lg-6">
+    <h1>Liste des artistes</h1>
+    {{#link-to "artists.detail" "new" classNames="btn btn-primary"}}Nouvel artiste{{/link-to}}
+    <table class="table table-hover table-striped">
+      <thead>
+      <tr>
+        <th scope="col" {{action "sortBy" "name"}}>Nom
+          {{#if (eq sortProperty "name")}}
+            {{#if (eq sortDirection "DESC")}}
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            {{else}}
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            {{/if}}
+          {{/if}}</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each model as |artist|}}
+        <tr>
+          <th scope="row">{{artist.name}}</th>
+          <td>{{#link-to "artists.detail" artist.id classNames="btn btn-primary"}}Détail{{/link-to}}</td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-6"><p>Affichage des artistes {{add (mult model.meta.number model.meta.size) 1}} à {{add (mult model.meta.number model.meta.size) model.meta.size}} sur un total de {{model.meta.totalElements}}</p>
+      </div>
+      <div class="col-lg-6">
+        <ul class="pagination">
+          <li class="{{if (eq model.meta.number 0) "disabled" ""}}">
+            {{#link-to "artists.index" (query-params page=(sub model.meta.number 1))}}
+              &laquo;
+            {{/link-to}}
+          </li>
+          <li><a href="#">Page {{add model.meta.number 1}}</a></li>
+          <li class="{{if (eq (add model.meta.number 1) model.meta.totalPages) "disabled" ""}}">
+            {{#link-to "artists.index" (query-params page=(add model.meta.number 1) size=size sortProperty=sortProperty sortDirection=sortDirection)}}
+              &raquo;
+            {{/link-to}}
+          </li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    {{outlet}}
+  </div>
+</div>

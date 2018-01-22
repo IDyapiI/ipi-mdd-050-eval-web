@@ -1,5 +1,30 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{#link-to "index" classNames="navbar-brand"}}Librairie Audio{{/link-to}}
+    </div>
 
-{{outlet}}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active">{{#link-to "artists.index" (query-params name=null) classNames="nav-link"}}Liste des artistes{{/link-to}}</li>
+      </ul>
+
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          {{input value=name classNames="form-control" placeholder="Rechercher par nom" type="text"}}
+        </div>
+        <button type="submit" class="btn btn-default" {{action "rechercher"}}>Rechercher</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  {{outlet}}
+</div>

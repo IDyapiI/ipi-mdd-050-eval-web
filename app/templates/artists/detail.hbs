@@ -1,0 +1,52 @@
+<h2>Détail de l'artiste {{model.name}}</h2>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group">
+      <label class="form-control-label" for="name">Nom</label>
+      {{input type="text" value=model.name classNames="form-control" id="name"}}
+
+
+      {{#if model.isNew}}
+      {{else}}
+        <label class="form-control-label" for="performance">Albums</label>
+      {{/if}}
+      <div class="row">
+        <div class="col-lg-10">
+          <div class="list-group">
+            {{#each model.albums as |album|}}
+              <li class="list-group-item">&nbsp;{{album.title}}</li>
+            {{/each}}
+          </div>
+        </div>
+        <div class="col-lg-2 text-center">
+          <div class="list-group text-center">
+            {{#each model.albums as |album|}}
+              <button {{action "deleteAlbum" album.id}} class="btn-danger list-group-item list-group-item-action"><span class="glyphicon glyphicon-remove"></span></button>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+      {{#if model.isNew}}
+      {{else}}
+      <div class="row">
+        <div class="col-lg-10">
+          {{input type="text" value=titleToAdd placeholder="Ajouter un album..." class="form-control"}}
+        </div>
+        <div class="col-lg-2 text-center">
+          <button {{action "addAlbum" titleToAdd}} class="btn-success list-group-item list-group-item-action"><span class="glyphicon glyphicon-plus"></span></button>
+
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <button disabled="{{if model.hasDirtyAttributes "" "disabled"}}" class="btn btn-primary" {{action "save"}}>Enregistrer</button>
+  {{#if model.isNew}}
+  {{else}}
+    <button class="btn btn-danger" {{action "delete"}}>Supprimer</button>
+  {{/if}}
+</div>
+
