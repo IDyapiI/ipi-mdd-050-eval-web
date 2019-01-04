@@ -35,12 +35,12 @@ export default Controller.extend({
         artist:this.get("model")
       });
       album.save().then(() => {
-        this.toast.success('Ajout effectué !');
-        this.set("titleToAdd", null);
+        this.get("model").reload();
+          this.toast.success('Ajout effectué !');
+          this.set("titleToAdd", null);
       }).catch((reason) => {
         this.toast.error("Erreur lors de l'ajout ! " + reason);
       });
-
     }
   }
 });

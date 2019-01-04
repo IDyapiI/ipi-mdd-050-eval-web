@@ -1,0 +1,48 @@
+PUT http://localhost:5366/artists/276
+Accept: application/json
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+  "name": "Testg",
+  "id": 276,
+  "albums":["376"]
+}
+
+###
+
+PUT http://localhost:5366/artists/276
+Accept: application/json
+Content-Type: application/json
+Cache-Control: no-cache
+
+{"name":"Testg","id":276}
+
+<> 2019-01-04T122927.200.json
+
+###
+
+PUT http://localhost:5366/artists/276
+Accept: */*
+Cache-Control: no-cache
+
+{"name":"Testg","id":276}
+
+###
+
+PUT http://localhost:5366/artists/276
+Accept: */*
+Cache-Control: no-cache
+
+{"name":"Testg","id":276}
+
+###
+
+PUT http://localhost:5366/artists/276
+Accept: */*
+Cache-Control: no-cache
+
+{"name":"Testg","albums":["368"],"id":276}
+
+###
+

@@ -19,10 +19,10 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
       normalizedPayload = wrapPayload(payload, modelClass.modelName);
     }
 
-    if(payload.equipe){
+    if(payload.albums){
       payload.relationships = {
-        "equipe": {
-          "data": payload.equipe
+        "albums": {
+          "data": payload.albums
         }
       };
     }
@@ -60,6 +60,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
 
   serialize: function(record, options) {
     var json = this._super.apply(this, arguments); // Get default serialization
+    json = _.omit(json, 'albums');
 
     json.id = parseInt(record.id);  // tack on the id
 
